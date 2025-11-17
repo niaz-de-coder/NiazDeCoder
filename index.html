@@ -1,0 +1,356 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Niaz De Coder — Portfolio</title>
+  <meta name="description" content="Portfolio of Md. Niaz Al Motin — Website Developer">
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#0f1720;
+      --muted:#9aa6b2;
+      --accent:#7c5cff;
+      --glass: rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:linear-gradient(180deg,var(--bg) 0%, #071019 60%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+    }
+    /* Navbar */
+    .nav{position:fixed;top:0;left:0;right:0;height:68px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:1000;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:48px;height:48px;border-radius:999px;background:linear-gradient(135deg,var(--accent), #4cc7ff);display:flex;align-items:center;justify-content:center;font-weight:700;color:#061017;box-shadow:0 6px 18px rgba(124,92,255,0.14)}
+    .navmenu{display:flex;gap:18px;align-items:center}
+    .navmenu a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
+    .navmenu a:hover{color:#fff;background:rgba(255,255,255,0.02)}
+    .nav-cta{display:flex;gap:12px}
+    .hamburger{display:none}/* Banner / Home */
+.hero{min-height:84vh;display:grid;place-items:center;padding-top:68px}
+.hero-inner{width:100%;max-width:1200px;padding:48px;display:flex;align-items:center;justify-content:center;position:relative}
+.hero-card{width:100%;height:520px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:18px;padding:28px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+.hero-photo{width:360px;height:360px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;position:absolute;left:50%;transform:translateX(-50%);top:40px;backdrop-filter:blur(6px);}
+.hero-photo img{width:100%;height:100%;object-fit:cover;border-radius:14px;opacity:0.95}
+.hero-name{position:absolute;left:50%;transform:translateX(-50%);bottom:64px;font-size:28px;font-weight:700;letter-spacing:0.6px}
+.hero-title{position:absolute;right:28px;bottom:18px;font-size:12px;color:var(--muted)}
+.hero-action{position:absolute;left:28px;bottom:18px}
+.btn{background:linear-gradient(90deg,var(--accent), #4cc7ff);border:none;padding:10px 14px;border-radius:10px;color:#071017;font-weight:700;cursor:pointer}
+
+/* Sections */
+section{padding:80px 24px}
+.container{max-width:1100px;margin:0 auto}
+
+/* About */
+.about{display:grid;grid-template-columns:360px 1fr;gap:28px;align-items:center}
+.about-photo{width:360px;height:360px;border-radius:12px;overflow:hidden;background:var(--glass);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03)}
+.about-photo img{width:100%;height:100%;object-fit:cover}
+.about-info{padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+.info-list{display:flex;flex-direction:column;gap:8px}
+.info-item{display:flex;gap:8px;align-items:center}
+.socials{display:flex;gap:12px;margin-top:10px}
+
+/* description */
+.about-desc{margin-top:24px;text-align:center;color:var(--muted)}
+
+/* Skills */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:18px}
+.skill-card{background:var(--card);border-radius:12px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:10px;border:1px solid rgba(255,255,255,0.03)}
+.skill-icon{width:56px;height:56px;border-radius:10px;display:grid;place-items:center;font-weight:700;font-size:18px;background:rgba(255,255,255,0.02)}
+
+/* Projects */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.project-card{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+.project-card img{width:100%;height:150px;object-fit:cover;border-radius:8px}
+.project-title{margin-top:8px;font-weight:700}
+
+/* Modal */
+.modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(2,6,12,0.6);z-index:2000}
+.modal.show{display:grid}
+.modal-card{width:90%;max-width:880px;background:#071018;padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+.modal-media{height:320px;border-radius:8px;overflow:hidden}
+
+/* Education */
+.edu-list{display:flex;flex-direction:column;gap:12px}
+.edu-item{background:var(--card);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+
+/* Contact */
+.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:8px;color:#e8f0f8}
+textarea{grid-column:1/3;min-height:120px}
+.submit{grid-column:2/3;justify-self:end}
+
+/* Footer */
+footer{padding:28px;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02)}
+
+/* Responsive */
+@media(max-width:900px){
+  .about{grid-template-columns:1fr;}
+  .hero-photo{width:300px;height:300px}
+  .navmenu{display:none}
+  .hamburger{display:block;color:var(--muted)}
+}
+
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="brand">
+      <div class="logo">ND</div>
+      <div style="font-weight:700">Niaz De Coder</div>
+    </div>
+    <nav class="navmenu" id="navmenu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hamburger" id="hamb">☰</div>
+  </header>  <main>
+    <section id="home" class="hero">
+      <div class="hero-inner container">
+        <div class="hero-card">
+          <!-- Center transparent photo placeholder -->
+          <div class="hero-photo" id="heroPhoto">
+            <img src="https://via.placeholder.com/600x600.png?text=Your+Transparent+Photo" alt="Hero Photo" id="heroImg">
+          </div>
+          <div class="hero-name">Niaz De Coder</div>
+          <div class="hero-title">Website Developer</div>
+          <div class="hero-action"><button class="btn" data-target="#about">About</button></div>
+        </div>
+      </div>
+    </section><section id="about" class="container">
+  <div class="about">
+    <div class="about-photo"><img src="https://via.placeholder.com/400x400.png?text=Casual+Photo" alt="Casual Photo"></div>
+    <div class="about-info">
+      <div style="font-weight:800;font-size:20px">About Me</div>
+      <div class="info-list">
+        <div class="info-item"><strong>Full Name:</strong>&nbsp; Md. Niaz Al Motin</div>
+        <div class="info-item"><strong>Codename:</strong>&nbsp; Niaz De Coder</div>
+        <div class="info-item"><strong>Date of Birth:</strong>&nbsp; 7th June, 2006</div>
+        <div class="info-item"><strong>Location:</strong>&nbsp; Dhaka, Bangladesh</div>
+        <div class="info-item socials">
+          <!-- Inline SVG icons -->
+          <a href="https://facebook.com/" target="_blank" aria-label="Facebook" title="Facebook">🔵</a>
+          <a href="https://instagram.com/" target="_blank" aria-label="Instagram" title="Instagram">📸</a>
+          <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn" title="LinkedIn">💼</a>
+          <a href="https://github.com/" target="_blank" aria-label="GitHub" title="GitHub">🐙</a>
+        </div>
+      </div>
+      <p class="about-desc">I am a Website Developer focused on creating responsive, performant, and aesthetic web experiences. I design user-centered interfaces and implement production-ready code with HTML, CSS, JavaScript, PHP and MySQL. I enjoy building projects that scale.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="container">
+  <h2>Skills</h2>
+  <div class="skills-grid" id="skillsGrid">
+    <!-- Skill cards inserted by JS -->
+  </div>
+</section>
+
+<section id="projects" class="container">
+  <h2>Projects</h2>
+  <div id="projectsGrid" class="projects-grid">
+    <!-- Fetched from Google Sheets via App Script endpoint -->
+  </div>
+</section>
+
+<section id="education" class="container">
+  <h2>Education</h2>
+  <div class="edu-list">
+    <div class="edu-item"><strong>Undergraduation:</strong> AIUB — 2025–Present</div>
+    <div class="edu-item"><strong>Higher Secondary:</strong> Dhaka Commerce College — 2022–2024</div>
+    <div class="edu-item"><strong>Secondary School:</strong> South Point School and College — 2016–2022</div>
+  </div>
+</section>
+
+<section id="contact" class="container">
+  <h2>Contact</h2>
+  <form id="contactForm">
+    <div class="contact-form">
+      <input class="input" name="fullName" placeholder="Full name" required>
+      <input class="input" name="mobile" placeholder="Mobile number" required>
+      <input class="input" name="email" placeholder="Email" type="email" required>
+      <textarea name="message" placeholder="Your message" required></textarea>
+      <div></div>
+      <button type="submit" class="btn submit">Send</button>
+    </div>
+  </form>
+  <div id="contactSuccess" style="display:none;margin-top:12px;color:#7cffb2">Message submitted. Thank you.</div>
+</section>
+
+  </main>  <footer>
+    <div class="container">© <span id="year"></span> Md. Niaz Al Motin — Website Developer. All rights reserved.</div>
+  </footer>  <!-- Modal -->  <div id="modal" class="modal" role="dialog" aria-hidden="true">
+    <div class="modal-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div id="modalTitle" style="font-weight:800"></div><div><button id="modalClose" class="btn">Close</button></div></div>
+      <div class="modal-media"><img id="modalImg" src="" alt="Project" style="width:100%;height:100%;object-fit:cover;border-radius:8px"></div>
+      <p id="modalDesc" style="margin-top:12px;color:var(--muted)"></p>
+      <div style="display:flex;gap:12px;margin-top:12px"><a id="modalUrl" class="btn" href="#" target="_blank">Open Site</a><button id="modalBack" class="btn">Back</button></div>
+    </div>
+  </div>  <script>
+    // Interactive UI + data bindings
+    const skills = ['HTML','CSS','JavaScript','PHP','Python','MySQL','PhpMyAdmin','GitHub','Figma','Canva'];
+    const skillsGrid = document.getElementById('skillsGrid');
+    skills.forEach(s=>{
+      const card = document.createElement('div');card.className='skill-card';
+      const ic = document.createElement('div');ic.className='skill-icon';ic.textContent=s[0];
+      const nm = document.createElement('div');nm.textContent=s;nm.style.fontWeight='700';nm.style.fontSize='14px';
+      card.appendChild(ic);card.appendChild(nm);skillsGrid.appendChild(card);
+    });
+
+    // Smooth scroll when clicking nav or hero button
+    document.querySelectorAll('.navmenu a, .btn[data-target]').forEach(el=>{
+      el.addEventListener('click', e=>{
+        e.preventDefault();
+        const target = el.getAttribute('href') || el.dataset.target;
+        if(!target) return;
+        document.querySelector(target).scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+
+    // Mobile hamburger to toggle menu
+    document.getElementById('hamb').addEventListener('click',()=>{
+      const m = document.getElementById('navmenu');
+      m.style.display = (m.style.display==='flex')? 'none':'flex';
+      m.style.flexDirection='column';
+      m.style.background='linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00))';
+      m.style.position='absolute';m.style.right='20px';m.style.top='68px';m.style.padding='12px';
+    });
+
+    // Projects: fetch from Google Apps Script web app (replace YOUR_WEBAPP_URL)
+    const PROJECTS_ENDPOINT = 'REPLACE_WITH_YOUR_APPSCRIPT_GET_ENDPOINT'; // <-- set after deploying the Apps Script
+    const projectsGrid = document.getElementById('projectsGrid');
+
+    async function loadProjects(){
+      try{
+        const res = await fetch(PROJECTS_ENDPOINT);
+        if(!res.ok) throw new Error('Failed to fetch projects');
+        const data = await res.json();
+        data.forEach(p=>{
+          const card = document.createElement('div');card.className='project-card';
+          card.innerHTML = `<img src="${p.photo||'https://via.placeholder.com/640x360.png?text=Project'}" alt="${p.name}"><div class="project-title">${p.name}</div>`;
+          card.addEventListener('click',()=>openModal(p));
+          projectsGrid.appendChild(card);
+        });
+      }catch(err){
+        projectsGrid.innerHTML = '<div style="color:var(--muted)">Unable to load projects. Make sure PROJECTS_ENDPOINT is set to your Apps Script web app URL.</div>';
+        console.error(err);
+      }
+    }
+    loadProjects();
+
+    // Modal
+    const modal = document.getElementById('modal');
+    function openModal(p){
+      document.getElementById('modalTitle').textContent = p.name;
+      document.getElementById('modalImg').src = p.photo||'https://via.placeholder.com/880x320.png?text=Project';
+      document.getElementById('modalDesc').textContent = p.description||'';
+      document.getElementById('modalUrl').href = p.url||'#';
+      modal.classList.add('show');modal.setAttribute('aria-hidden','false');
+    }
+    document.getElementById('modalClose').addEventListener('click',()=>{modal.classList.remove('show');modal.setAttribute('aria-hidden','true')});
+    document.getElementById('modalBack').addEventListener('click',()=>{modal.classList.remove('show');modal.setAttribute('aria-hidden','true')});
+
+    // Contact form: POST to Apps Script endpoint that appends to sheet
+    const CONTACT_ENDPOINT = 'REPLACE_WITH_YOUR_APPSCRIPT_POST_ENDPOINT'; // <-- set after deploying the Apps Script
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit',async e=>{
+      e.preventDefault();
+      const fd = new FormData(form);
+      const body = Object.fromEntries(fd.entries());
+      try{
+        const res = await fetch(CONTACT_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+        if(!res.ok) throw new Error('Submission failed');
+        form.reset();document.getElementById('contactSuccess').style.display='block';
+      }catch(err){
+        alert('Unable to submit contact form. Check CONTACT_ENDPOINT.');console.error(err);
+      }
+    });
+
+    // footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>  <!--
+    ===========================
+    GOOGLE SHEET & APPSCRIPT SETUP
+    ===========================
+
+    1) Projects Sheet (Google Sheets)
+       - Create a sheet named "Projects"
+       - Columns (Row 1 / header): name | photo | url | description
+       - Data rows: each project on a row. photo should be a public image URL (png/jpg)
+
+    2) Contacts Sheet
+       - Create a sheet named "Contacts"
+       - Columns (Row 1 / header): timestamp | fullName | mobile | email | message
+
+    3) Apps Script (web app) - full script below. Deploy > New deployment > Web app > Execute as: Me, Who has access: Anyone
+
+    ---------------------- APPSCRIPT CODE ----------------------
+
+    // Paste this into Apps Script editor (Code.gs) and deploy as web app
+    const SHEET_ID = 'REPLACE_WITH_YOUR_SPREADSHEET_ID'; // from sheet URL
+
+    function doGet(e){
+      // Return projects as JSON
+      const ss = SpreadsheetApp.openById(SHEET_ID);
+      const sheet = ss.getSheetByName('Projects');
+      const rows = sheet.getDataRange().getValues();
+      const headers = rows.shift();
+      const data = rows.map(r=>{
+        const obj = {};
+        headers.forEach((h,i)=>obj[h] = r[i]);
+        return obj;
+      });
+      return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    function doPost(e){
+      // Append contact form submission to Contacts sheet
+      try{
+        const ss = SpreadsheetApp.openById(SHEET_ID);
+        const sheet = ss.getSheetByName('Contacts');
+        const body = e.postData && e.postData.contents ? JSON.parse(e.postData.contents) : e.parameter;
+        const row = [new Date(), body.fullName||'', body.mobile||'', body.email||'', body.message||''];
+        sheet.appendRow(row);
+        return ContentService.createTextOutput(JSON.stringify({status:'ok'})).setMimeType(ContentService.MimeType.JSON);
+      }catch(err){
+        return ContentService.createTextOutput(JSON.stringify({status:'error',message:err.message})).setMimeType(ContentService.MimeType.JSON);
+      }
+    }
+
+    ---------------------- DEPLOYMENT NOTES ----------------------
+    - Replace SHEET_ID with the ID in your Google Sheets URL (the long alphanumeric string).
+    - Deploy > New deployment > Select type: Web app.
+      * Execute as: Me
+      * Who has access: Anyone
+    - Copy the Web App URL. Use it as both PROJECTS_ENDPOINT (GET) and CONTACT_ENDPOINT (POST) in the HTML.
+
+    SECURITY NOTES
+    - This approach makes the sheet readable to anyone with the web app URL (data served via script). Do not publish sensitive data.
+    - If you need auth, use OAuth or Apps Script advanced services and restrict access.
+
+    IMAGE SIZING RECOMMENDATIONS
+    - Hero (transparent/photo-over-banner): PNG with transparency recommended, 600x600px. The CSS expects a roughly square image; use 600x600 for best quality.
+    - Casual about photo: 400x400px JPG/PNG.
+    - Project thumbnails: 1280x720 or 640x360.
+
+    HOW TO CUSTOMIZE
+    - Replace placeholder image URLs with your hosted image URLs.
+    - Replace SOCIAL links in About section with your profiles.
+    - After deploying Apps Script, set PROJECTS_ENDPOINT and CONTACT_ENDPOINT at top of the page.
+
+    -----------------------------------------------------------------
+    End of file. Copy this single HTML file to your editor and upload to your hosting.
+  --></body>
+</html>
